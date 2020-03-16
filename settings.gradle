@@ -1,2 +1,3 @@
 include ':app', ':library', ':drawable'
 rootProject.name='sand_common'
+include ':livedataext'
