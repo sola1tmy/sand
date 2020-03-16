@@ -1,2 +1,2 @@
-include ':app', ':library'
+include ':app', ':library', ':drawable'
 rootProject.name='sand_common'
