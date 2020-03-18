@@ -1,4 +1,4 @@
-include ':app', ':library', ':drawable'
+include ':app', ':library', ':drawable', ':splitties_ext'
 rootProject.name='sand_common'
 include ':livedataext'
 include ':state'

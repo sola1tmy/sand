@@ -1,7 +1,7 @@
 package moe.sola.android.common
 
 import android.app.Application
-import moe.sola.android.common.exception.SandException
+import moe.sola.android.common.pool.Pool
 
 /**
  * author: youhuajie
@@ -12,8 +12,9 @@ object Sand {
 
     internal lateinit var app: Application
 
-    fun hold(app: Application) {
+    fun setup(app: Application) {
         this.app = app
+        Pool.registerLifeCycle(app)
     }
 
 }
