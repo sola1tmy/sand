@@ -19,6 +19,16 @@ fun cornerDrawable(
     setColor(color)
 }
 
+fun cornerDrawable(
+    color: Int,
+    corner: Float,
+    stroke: Stroke = Stroke(0, color, 0f, 0f)
+) = GradientDrawable().apply {
+    shape = GradientDrawable.RECTANGLE
+    cornerRadii = radius(corner)
+    setStroke(stroke.size, stroke.color, stroke.dashWidth, stroke.dashGap)
+    setColor(color)
+}
 
 data class Stroke(val size: Int, val color: Int, val dashWidth: Float, val dashGap: Float)
 
