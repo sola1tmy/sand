@@ -12,12 +12,16 @@ import moe.sola.view_dsl.lp.wrapContent
  * created on: 2020/3/19 10:30 AM
  * description:
  */
-class _LinearLayoutCompt(context: Context): LinearLayoutCompat(context) {
+class _LinearLayoutCompat(context: Context): LinearLayoutCompat(context) {
 
-    fun View.lparams(init: ViewGroup.LayoutParams.()-> Unit) {
+    operator fun View.invoke(width: Int = matchParent, height: Int = wrapContent, init: LayoutParams.()-> Unit = {}) {
         val lp: LayoutParams = LayoutParams(matchParent, wrapContent)
         init.invoke(lp)
         addView(this, lp)
     }
+
+}
+
+class _RelativeLayoutCompat(context: Context): LinearLayoutCompat(context) {
 
 }

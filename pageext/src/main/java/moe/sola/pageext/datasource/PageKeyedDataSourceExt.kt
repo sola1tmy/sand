@@ -3,6 +3,7 @@ package moe.sola.pageext.datasource
 import androidx.paging.PageKeyedDataSource
 import io.reactivex.rxjava3.core.Maybe
 import moe.sola.pageext.entity.IPage
+import moe.sola.pageext.request.IPageReceiver
 import moe.sola.pageext.request.IPageRequest
 
 /**

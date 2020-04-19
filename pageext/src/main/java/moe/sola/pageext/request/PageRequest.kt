@@ -1,5 +1,6 @@
 package moe.sola.pageext.request
 
+import io.reactivex.rxjava3.core.Maybe
 import moe.sola.pageext.entity.IPage
 
 /**
@@ -10,5 +11,20 @@ import moe.sola.pageext.entity.IPage
 interface IPageRequest<KEY, VALUE> {
 
     fun page(resultAction: (IPage<KEY, VALUE>)-> Unit, errorAction: (Throwable)-> Unit)
+
+}
+
+fun <KEY, VALUE> Maybe<VALUE>.handlePage(): IPageRequest<KEY, VALUE> {
+    return object: IPageRequest<KEY, VALUE> {
+        override fun page(
+            resultAction: (IPage<KEY, VALUE>) -> Unit,
+            errorAction: (Throwable) -> Unit
+        ) {
+            this@handlePage
+                .doOnSuccess { resultAction.invoke(it) }
+                .doOnError { errorAction.invoke(it) }
+        }
+
+    }
 
 }
