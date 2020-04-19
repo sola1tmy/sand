@@ -6,10 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import androidx.core.graphics.alpha
 import moe.sola.android.common.Sand
 import moe.sola.sand.drawable.colorDrawable
-import moe.sola.sand.drawable.corner.Stroke
 import moe.sola.sand.drawable.corner.cornerDrawable
 import moe.sola.sand.drawable.layerDrawable
 import moe.sola.sand.drawable.selectable.selectableItemBackground

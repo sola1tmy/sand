@@ -1,5 +1,5 @@
 rootProject.name='sand_common'
-include ':app', ':common', ':splitties_ext', ':weibo'
+include ':app', ':common', ':weibo'
 include ':livedataext'
 include ':state'
 include ':view'
