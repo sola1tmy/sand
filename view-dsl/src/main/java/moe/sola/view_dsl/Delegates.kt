@@ -2,9 +2,15 @@ package moe.sola.view_dsl
 
 import android.content.Context
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatEditText
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.LinearLayoutCompat
+import moe.sola.view_dsl.layout.ILayout
+import moe.sola.view_dsl.layout._LinearLayoutCompat
 
 /**
  * author: youhuajie
@@ -16,12 +22,28 @@ fun <VIEW> Context.customView() {
 
 }
 
-fun Context.textView(init: TextView.()-> Unit) = lazy {
-    TextView(this).apply { init(this) }
+fun ILayout.textView(init: TextView.()-> Unit) = lazy {
+    AppCompatTextView(context).apply { init(this) }
 }
 
-fun Context.editText(init: EditText.()-> Unit) = lazy {
-    EditText(this).apply { init(this) }
+fun ILayout.imageView(init: ImageView.()-> Unit) = lazy {
+    AppCompatImageView(context).apply { init(this) }
 }
 
+fun ILayout.editText(init: AppCompatEditText.()-> Unit) = lazy {
+    AppCompatEditText(context).apply { init(this) }
+}
 
+fun ILayout.verticalLayout(init: _LinearLayoutCompat.()-> Unit) = lazy {
+    _LinearLayoutCompat(context).apply {
+        orientation = LinearLayoutCompat.VERTICAL
+        init(this)
+    }
+}
+
+fun ILayout.horizontalLayout(init: LinearLayoutCompat.()-> Unit) = lazy {
+    LinearLayoutCompat(context).apply {
+        orientation = LinearLayoutCompat.VERTICAL
+        init(this)
+    }
+}
