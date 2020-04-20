@@ -1,5 +1,6 @@
 package moe.sola.state
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Maybe
@@ -33,14 +34,17 @@ class State (
 /**
  * Maybe在数据流式null的情况下会走OnComplete
  */
-fun <T> Maybe<T>.bindState(stateLiveData: MutableLiveData<State>): Maybe<T> {
-    return compose { upstream ->
-        upstream.doOnSubscribe { stateLiveData.updateValue(State.START) }
+internal fun <T> Maybe<T>.bindState(stateLiveData: MutableLiveData<State>): Maybe<T> {
+    return doOnSubscribe { stateLiveData.updateValue(State.START) }
             .doOnComplete { stateLiveData.updateValue(State.COMPLETE) }
-            .doOnSuccess { stateLiveData.updateValue(State.COMPLETE) }
-            .doOnError { stateLiveData.updateValue(State.error(it)) }
+            .doOnSuccess {
+                stateLiveData.updateValue(State.COMPLETE)
+            }
+            .doOnError {
+                stateLiveData.updateValue(State.error(it))
+//                stateLiveData.postValue(State.COMPLETE)
+            }
             .doOnDispose { stateLiveData.updateValue(State.COMPLETE) }
-    }
 }
 
 fun Completable.bindState(stateLiveData: MutableLiveData<State>): Completable {

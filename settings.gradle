@@ -1,7 +1,6 @@
 rootProject.name='sand_common'
 include ':app', ':common', ':weibo'
 include ':livedataext'
-include ':state'
 include ':view'
 include ':pageext'
 include ':view-dsl'
@@ -10,6 +9,9 @@ include ':unit'
 
 includeWithAlias("sand-drawable/drawable", "drawable", "drawable")
 includeWithAlias("sand-drawable/drawable-app", "drawable-app", "drawable-app")
+
+includeWithAlias("state/state-app", "state-app", "state-app")
+includeWithAlias("state/state", "state", "state")
 
 def includeWithAlias(String fullPath, String module, String alias) {
     include(":$module")
