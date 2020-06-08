@@ -1,14 +1,7 @@
 package moe.sola.view_dsl
 
-import android.content.Context
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatEditText
-import androidx.appcompat.widget.AppCompatImageView
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.appcompat.widget.LinearLayoutCompat
+import android.widget.RadioGroup
+import androidx.appcompat.widget.*
 import moe.sola.view_dsl.layout.ILayout
 import moe.sola.view_dsl.layout._LinearLayoutCompat
 
@@ -17,31 +10,71 @@ import moe.sola.view_dsl.layout._LinearLayoutCompat
  * created on: 2020/3/19 10:24 AM
  * description:
  */
-//todo 看看sp是怎么实现的
-fun <VIEW> Context.customView() {
-
-}
-
-fun ILayout.textView(init: TextView.()-> Unit) = lazy {
+fun ILayout.textView(init: AppCompatTextView.() -> Unit) = lazy {
     AppCompatTextView(context).apply { init(this) }
 }
 
-fun ILayout.imageView(init: ImageView.()-> Unit) = lazy {
+fun ILayout.button(init: AppCompatButton.() -> Unit) = lazy {
+    AppCompatButton(context).apply { init(this) }
+}
+
+fun ILayout.imageView(init: AppCompatImageView.() -> Unit) = lazy {
     AppCompatImageView(context).apply { init(this) }
 }
 
-fun ILayout.editText(init: AppCompatEditText.()-> Unit) = lazy {
+fun ILayout.imageButton(init: AppCompatImageButton.() -> Unit) = lazy {
+    AppCompatImageButton(context).apply { init(this) }
+}
+
+fun ILayout.editText(init: AppCompatEditText.() -> Unit) = lazy {
     AppCompatEditText(context).apply { init(this) }
 }
 
-fun ILayout.verticalLayout(init: _LinearLayoutCompat.()-> Unit) = lazy {
+fun ILayout.checkbox(init: AppCompatCheckBox.() -> Unit) = lazy {
+    AppCompatCheckBox(context).apply { init(this) }
+}
+
+fun ILayout.seekBar(init: AppCompatSeekBar.() -> Unit) = lazy {
+    AppCompatSeekBar(context).apply { init(this) }
+}
+
+fun ILayout.spinner(init: AppCompatSpinner.() -> Unit) = lazy {
+    AppCompatSpinner(context).apply { init(this) }
+}
+
+fun ILayout.radioButton(init: AppCompatRadioButton.() -> Unit) = lazy {
+    AppCompatRadioButton(context).apply { init(this) }
+}
+
+fun ILayout.ratingBar(init: AppCompatRatingBar.() -> Unit) = lazy {
+    AppCompatRatingBar(context).apply { init(this) }
+}
+
+fun ILayout.toggleButton(init: AppCompatToggleButton.() -> Unit) = lazy {
+    AppCompatToggleButton(context).apply { init(this) }
+}
+
+fun ILayout.autoCompleteTextView(init: AppCompatAutoCompleteTextView.() -> Unit) = lazy {
+    AppCompatAutoCompleteTextView(context).apply { init(this) }
+}
+
+fun ILayout.multiAutoCompleteTextView(init: AppCompatMultiAutoCompleteTextView.() -> Unit) = lazy {
+    AppCompatMultiAutoCompleteTextView(context).apply { init(this) }
+}
+
+fun ILayout.checkedTextView(init: AppCompatCheckedTextView.()-> Unit) {
+    AppCompatCheckedTextView(context).apply { init(this) }
+}
+
+
+fun ILayout.verticalLayout(init: _LinearLayoutCompat.() -> Unit) = lazy {
     _LinearLayoutCompat(context).apply {
         orientation = LinearLayoutCompat.VERTICAL
         init(this)
     }
 }
 
-fun ILayout.horizontalLayout(init: LinearLayoutCompat.()-> Unit) = lazy {
+fun ILayout.horizontalLayout(init: LinearLayoutCompat.() -> Unit) = lazy {
     LinearLayoutCompat(context).apply {
         orientation = LinearLayoutCompat.VERTICAL
         init(this)
