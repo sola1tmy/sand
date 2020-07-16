@@ -1,8 +1,6 @@
 package moe.sola.pageext.datasource
 
 import androidx.paging.PageKeyedDataSource
-import io.reactivex.rxjava3.core.Maybe
-import moe.sola.pageext.entity.IPage
 import moe.sola.pageext.request.IPageReceiver
 import moe.sola.pageext.request.IPageRequest
 
@@ -21,7 +19,7 @@ class EasyDataSource<KEY, VALUE>(
         callback: LoadInitialCallback<KEY, VALUE>
     ) {
         request.invoke(initKey, params.requestedLoadSize).page({
-            callback.onResult(it.datas(), it.nextPage(), it.currentPage())
+            callback.onResult(it.data(), it.nextPage(), it.currentPage())
         }, {
             callback.onError(it)
         })
@@ -29,7 +27,7 @@ class EasyDataSource<KEY, VALUE>(
 
     override fun loadAfter(params: LoadParams<KEY>, callback: LoadCallback<KEY, VALUE>) {
         request.invoke(params.key, params.requestedLoadSize).page({
-            callback.onResult(it.datas(), it.nextPage())
+            callback.onResult(it.data(), it.nextPage())
         }, {
             callback.onError(it)
         })
@@ -37,7 +35,7 @@ class EasyDataSource<KEY, VALUE>(
 
     override fun loadBefore(params: LoadParams<KEY>, callback: LoadCallback<KEY, VALUE>) {
         request.invoke(params.key, params.requestedLoadSize).page({
-            callback.onResult(it.datas(), it.previousPage())
+            callback.onResult(it.data(), it.previousPage())
         }, {
             callback.onError(it)
         })

@@ -16,10 +16,10 @@ import moe.sola.sand_common.biz.main.mvvm.Repository
 class MainVM(app: Application) : AndroidViewModel(app) {
 
     val page by lazy {
-        easyPage<String, Int>(loadPage())
     }
 
     fun loadPage(): Maybe<Response<GithubRepositoriesQuery.Data>>? {
+
         return Repository().getRepositories()
             .elementAt(0)
     }

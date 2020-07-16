@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.LocaleList
 import androidx.appcompat.text.AllCapsTransformationMethod
 import androidx.appcompat.widget.AppCompatTextView
+import moe.sola.unit.SP
 
 /**
  * author: youhuajie
@@ -17,7 +18,7 @@ class TextAppearance {
     var mTextColor: ColorStateList? = null
     var mTextColorHint: ColorStateList? = null
     var mTextColorLink: ColorStateList? = null
-    var mTextSize = -1
+    var mTextSize: SP? = null
     var mTextLocales: LocaleList? = null
     var mFontFamily: String? = null
     var mFontTypeface: Typeface? = null
@@ -27,8 +28,8 @@ class TextAppearance {
     var mFontWeight = -1
     var mAllCaps = false
     var mShadowColor = 0
-    var mShadowDx = 0f,
-    var mShadowDy: Float = 0f,
+    var mShadowDx = 0f
+    var mShadowDy: Float = 0f
     var mShadowRadius: Float = 0f
     var mHasElegant = false
     var mElegant = false
@@ -57,8 +58,8 @@ inline fun AppCompatTextView.setTextAppearance(attributes: TextAppearance) {
         highlightColor = attributes.mTextColorHighlight
     }
 
-    if (attributes.mTextSize != -1) {
-        setRawTextSize(attributes.mTextSize.toFloat(), true /* shouldRequestLayout */)
+    attributes.mTextSize?.let {
+        textSize = it.value
     }
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -71,10 +72,11 @@ inline fun AppCompatTextView.setTextAppearance(attributes: TextAppearance) {
         attributes.mFontFamily = null
     }
 
-    setTypefaceFromAttrs(
-        attributes.mFontTypeface, attributes.mFontFamily,
-        attributes.mTypefaceIndex, attributes.mTextStyle, attributes.mFontWeight
-    )
+// todo typeface
+//    setTypefaceFromAttrs(
+//        attributes.mFontTypeface, attributes.mFontFamily,
+//        attributes.mTypefaceIndex, attributes.mTextStyle, attributes.mFontWeight
+//    )
 
     if (attributes.mShadowColor != 0) {
         setShadowLayer(
@@ -83,9 +85,10 @@ inline fun AppCompatTextView.setTextAppearance(attributes: TextAppearance) {
         )
     }
 
-    if (attributes.mAllCaps) {
-        transformationMethod = AllCapsTransformationMethod(context)
-    }
+// todo 默认大写
+//    if (attributes.mAllCaps) {
+//        transformationMethod = AllCapsTransformationMethod(context)
+//    }
 
     if (attributes.mHasElegant) {
         isElegantTextHeight = attributes.mElegant
@@ -93,7 +96,6 @@ inline fun AppCompatTextView.setTextAppearance(attributes: TextAppearance) {
 
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
         if (attributes.mHasFallbackLineSpacing) {
-
             isFallbackLineSpacing = attributes.mFallbackLineSpacing
         }
     }

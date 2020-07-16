@@ -14,15 +14,15 @@ interface IPageRequest<KEY, VALUE> {
 
 }
 
-fun <KEY, VALUE> Maybe<VALUE>.handlePage(): IPageRequest<KEY, VALUE> {
+fun <KEY, VALUE> Maybe<IPage<KEY, VALUE>>.handlePage(): IPageRequest<KEY, VALUE> {
     return object: IPageRequest<KEY, VALUE> {
         override fun page(
             resultAction: (IPage<KEY, VALUE>) -> Unit,
             errorAction: (Throwable) -> Unit
         ) {
             this@handlePage
-                .doOnSuccess { resultAction.invoke(it) }
-                .doOnError { errorAction.invoke(it) }
+                .doOnSuccess { resultAction(it) }
+                .doOnError { errorAction(it) }
         }
 
     }

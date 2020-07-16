@@ -13,6 +13,9 @@ includeWithAlias("sand-drawable/drawable-app", "drawable-app", "drawable-app")
 includeWithAlias("state/state-app", "state-app", "state-app")
 includeWithAlias("state/state", "state", "state")
 
+includeWithAlias("binding/binding", "binding", "binding")
+includeWithAlias("binding/binding-app", "binding-app", "binding-app")
+
 def includeWithAlias(String fullPath, String module, String alias) {
     include(":$module")
     project(":$module").with {

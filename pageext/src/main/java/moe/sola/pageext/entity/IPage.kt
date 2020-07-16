@@ -1,5 +1,7 @@
 package moe.sola.pageext.entity
 
+import androidx.paging.Pager
+
 /**
  * author: youhuajie
  * created on: 2020/3/19 8:55 AM
@@ -7,8 +9,7 @@ package moe.sola.pageext.entity
  */
 interface IPage<KEY, DATA> {
 
-
-    fun datas(): List<DATA>
+    fun data(): List<DATA>
 
     fun currentPage(): KEY
 

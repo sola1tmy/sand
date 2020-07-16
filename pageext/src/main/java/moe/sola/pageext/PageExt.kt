@@ -15,5 +15,5 @@ fun <KEY, VALUE> easyPage(
     key: KEY,
     config: PagedList.Config = PagedList.Config.Builder().setPageSize(10).build()
 ) {
-    LivePagedListBuilder<KEY, VALUE>(EasyDataSourceFactory(creator, key), config).build()
+    LivePagedListBuilder(EasyDataSourceFactory(creator, key), config).build()
 }

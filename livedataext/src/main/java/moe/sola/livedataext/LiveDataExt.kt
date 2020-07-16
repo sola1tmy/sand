@@ -11,6 +11,18 @@ import androidx.lifecycle.Transformations
  * created on: 2020/3/16 3:06 PM
  * description:
  */
+fun <T> liveData(value: T? = null) = lazy {
+    MutableLiveData<T>().apply {
+        this.value = value
+    }
+}
+
+fun <T> mutableLiveData(value: T? = null) = lazy {
+    MutableLiveData<T>().apply {
+        this.value = value
+    }
+}
+
 fun <T> MutableLiveData<T>.invalidate() {
     this.value = this.value
 }
