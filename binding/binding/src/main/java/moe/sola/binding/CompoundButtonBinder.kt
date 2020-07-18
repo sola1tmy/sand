@@ -1,7 +1,9 @@
 package moe.sola.binding
 
 import android.widget.CompoundButton
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 
 /**
  * author: youhuajie
@@ -11,18 +13,24 @@ import androidx.lifecycle.MutableLiveData
 class CompoundButtonBinder(private val compoundButton: CompoundButton):TwoWayBinder<CompoundButton, Boolean>() {
 
     private var set = false
+    private lateinit var lifecycleOwner: LifecycleOwner
     private lateinit var liveData: MutableLiveData<Boolean>
-    private val listener = CompoundButton.OnCheckedChangeListener { buttonView, isChecked -> liveData.value = isChecked }
-
-    override fun widgetChange(value: Boolean) {
+    private val listener = CompoundButton.OnCheckedChangeListener { _, isChecked ->
+        liveData.removeObserver(observer)
+        liveData.value = isChecked
+        liveData.observe(lifecycleOwner, observer)
+    }
+    private val observer = Observer<Boolean> {
         removeListener()
-        compoundButton.isChecked = value
+        compoundButton.isChecked = it
         setListener()
     }
 
-    override fun observeField(mutableLiveData: MutableLiveData<Boolean>) {
+    override fun observeField(lifecycleOwner: LifecycleOwner, mutableLiveData: MutableLiveData<Boolean>) {
         liveData = mutableLiveData
+        this.lifecycleOwner = lifecycleOwner
         setListener()
+        liveData.observe(lifecycleOwner, observer)
     }
 
 

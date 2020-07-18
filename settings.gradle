@@ -12,6 +12,8 @@ includeWithAlias("sand-drawable/drawable-app", "drawable-app", "drawable-app")
 
 includeWithAlias("state/state-app", "state-app", "state-app")
 includeWithAlias("state/state", "state", "state")
+includeWithAlias("state/state-flow", "state-flow", "state-flow")
+includeWithAlias("state/state-rx", "state-rx", "state-rx")
 
 includeWithAlias("binding/binding", "binding", "binding")
 includeWithAlias("binding/binding-app", "binding-app", "binding-app")

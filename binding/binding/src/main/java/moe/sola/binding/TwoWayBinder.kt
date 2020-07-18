@@ -1,5 +1,6 @@
 package moe.sola.binding
 
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 
 /**
@@ -9,7 +10,6 @@ import androidx.lifecycle.MutableLiveData
  */
 abstract class TwoWayBinder<W, T> {
 
-    abstract fun widgetChange(value: T)
+    abstract fun observeField(lifecycleOwner: LifecycleOwner, mutableLiveData: MutableLiveData<T>)
 
-    abstract fun observeField(mutableLiveData: MutableLiveData<T>)
 }

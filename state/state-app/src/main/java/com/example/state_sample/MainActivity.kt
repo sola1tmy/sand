@@ -3,21 +3,17 @@ package com.example.state_sample
 import android.app.ProgressDialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Maybe
-import io.reactivex.rxjava3.core.Scheduler
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import moe.sola.state.IStateHandler
 import moe.sola.state.State
-import moe.sola.state.bind
+import moe.sola.state_rx.bind
 import moe.sola.state.bindState
 
 class MainActivity : AppCompatActivity() {
