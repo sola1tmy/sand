@@ -28,10 +28,7 @@ class Bindable(val owner: LifecycleOwner)  {
     }
 
     fun <W, T> MutableLiveData<T>.twoWayBind(binder: TwoWayBinder<W, T>) {
-        binder.observeField(this)
-        observe(l, Observer { 
-            binder.widgetChange(it) 
-        })
+        binder.observeField(l, this)
     }
 
 }
