@@ -12,18 +12,17 @@ import androidx.lifecycle.Observer
  */
 class CompoundButtonBinder(private val compoundButton: CompoundButton):TwoWayBinder<CompoundButton, Boolean>() {
 
-    private var set = false
     private lateinit var lifecycleOwner: LifecycleOwner
     private lateinit var liveData: MutableLiveData<Boolean>
     private val listener = CompoundButton.OnCheckedChangeListener { _, isChecked ->
-        liveData.removeObserver(observer)
-        liveData.value = isChecked
-        liveData.observe(lifecycleOwner, observer)
+        if (liveData.value != isChecked) {
+            liveData.value = isChecked
+        }
     }
     private val observer = Observer<Boolean> {
-        removeListener()
-        compoundButton.isChecked = it
-        setListener()
+        if (it != compoundButton.isChecked) {
+            compoundButton.isChecked = it
+        }
     }
 
     override fun observeField(lifecycleOwner: LifecycleOwner, mutableLiveData: MutableLiveData<Boolean>) {
@@ -34,17 +33,11 @@ class CompoundButtonBinder(private val compoundButton: CompoundButton):TwoWayBin
     }
 
 
-    fun setListener() {
-        if (!set) {
-            set = true
-            compoundButton.setOnCheckedChangeListener(listener)
-        }
+    private fun setListener() {
+        compoundButton.setOnCheckedChangeListener(null)
+        compoundButton.setOnCheckedChangeListener(listener)
     }
 
-    fun removeListener() {
-        compoundButton.setOnCheckedChangeListener(null)
-        set = false
-    }
 
 }
 
